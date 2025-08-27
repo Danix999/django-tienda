@@ -1,0 +1,21 @@
+{% extends "tienda/base.html" %}
+{% block title %}Productos · Tienda Django{% endblock %}
+
+{% block content %}
+  <h1>Lista de productos</h1>
+
+  {% if productos %}
+    <ul>
+      {% for p in productos %}
+        <li>
+          <a href="{% url 'tienda:detalle_producto' p.pk %}">
+            {{ p.nombre }}
+          </a>
+          — <strong>${{ p.precio }}</strong>
+        </li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>No hay productos registrados todavía.</p>
+  {% endif %}
+{% endblock %}

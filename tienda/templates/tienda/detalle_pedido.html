@@ -1,0 +1,36 @@
+{% extends "tienda/base.html" %}
+{% block title %}Detalle Pedido #{{ pedido.id }}{% endblock %}
+
+{% block content %}
+  <h1>Pedido #{{ pedido.id }}</h1>
+
+  <p>
+    <strong>Cliente:</strong>
+    <a href="{% url 'tienda:detalle_cliente' pedido.cliente.pk %}">
+      {{ pedido.cliente.nombre }}
+    </a>
+  </p>
+  <p><strong>Fecha:</strong> {{ pedido.fecha|date:"Y-m-d H:i" }}</p>
+  <p><strong>Estado:</strong> {{ pedido.get_estado_display }}</p>
+  <p><strong>Total:</strong> ${{ pedido.total }}</p>
+
+  <h2>Productos</h2>
+  {% if pedido.productos.all %}
+    <ul>
+      {% for prod in pedido.productos.all %}
+        <li>
+          <a href="{% url 'tienda:detalle_producto' prod.pk %}">
+            {{ prod.nombre }}
+          </a>
+          — <strong>${{ prod.precio }}</strong>
+        </li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>No hay productos en este pedido.</p>
+  {% endif %}
+
+  <p>
+    <a href="{% url 'tienda:lista_pedidos' %}">← Volver a la lista de pedidos</a>
+  </p>
+{% endblock %}

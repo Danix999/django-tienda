@@ -1,0 +1,57 @@
+/* ======== Estilos básicos para la tienda ======== */
+
+/* Ajustes generales */
+body {
+  padding-bottom: 3rem;
+}
+
+/* Navbar */
+nav ul {
+  align-items: center;
+}
+
+nav a {
+  font-weight: bold;
+  text-decoration: none;
+}
+
+/* Listas */
+ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+ul li {
+  margin: 0.5rem 0;
+}
+
+/* Enlaces */
+a {
+  color: #0077cc;
+}
+
+a:hover {
+  color: #005999;
+  text-decoration: underline;
+}
+
+/* Tablas, si agregas en admin o extras */
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+table th,
+table td {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+/* Footer */
+footer {
+  margin-top: 3rem;
+  text-align: center;
+  font-size: 0.9rem;
+  color: #555;
+}
+

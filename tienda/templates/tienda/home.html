@@ -1,0 +1,15 @@
+{% extends "tienda/base.html" %}
+{% block title %}Inicio · Tienda Django{% endblock %}
+
+{% block content %}
+  <h1>Bienvenido a la Tienda</h1>
+  <p>Demo de catálogo, pedidos y clientes hecha en <strong>Django</strong>.</p>
+
+  <section>
+    <h2>Secciones</h2>
+    <ul>
+      <li><a href="{% url 'tienda:lista_productos' %}">Ver productos</a></li>
+      <li><a href="{% url 'tienda:lista_pedidos' %}">Ver pedidos</a></li>
+    </ul>
+  </section>
+{% endblock %}

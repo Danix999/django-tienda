@@ -1,0 +1,35 @@
+{% extends "tienda/base.html" %}
+{% block title %}Pedidos · Tienda Django{% endblock %}
+
+{% block content %}
+  <h1>Lista de pedidos</h1>
+
+  {% if pedidos %}
+    <ul>
+      {% for ped in pedidos %}
+        <li>
+          <a href="{% url 'tienda:detalle_pedido' ped.pk %}">
+            Pedido #{{ ped.id }}
+          </a>
+          — Cliente: 
+          <a href="{% url 'tienda:detalle_cliente' ped.cliente.pk %}">
+            {{ ped.cliente.nombre }}
+          </a>
+          — Fecha: {{ ped.fecha|date:"Y-m-d H:i" }}
+          — Estado: <strong>{{ ped.get_estado_display }}</strong>
+          <br>
+          <small>
+            Productos:
+            {% for prod in ped.productos.all %}
+              <a href="{% url 'tienda:detalle_producto' prod.pk %}">{{ prod.nombre }}</a>{% if not forloop.last %}, {% endif %}
+            {% empty %}
+              (sin productos)
+            {% endfor %}
+          </small>
+        </li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>No hay pedidos registrados todavía.</p>
+  {% endif %}
+{% endblock %}

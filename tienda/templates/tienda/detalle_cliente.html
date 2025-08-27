@@ -1,0 +1,35 @@
+{% extends "tienda/base.html" %}
+{% block title %}Cliente · {{ cliente.nombre }}{% endblock %}
+
+{% block content %}
+  <h1>{{ cliente.nombre }}</h1>
+  <p><strong>Email:</strong> {{ cliente.email|default:"(sin email)" }}</p>
+
+  <h2>Pedidos de este cliente</h2>
+  {% if pedidos %}
+    <ul>
+      {% for ped in pedidos %}
+        <li>
+          <a href="{% url 'tienda:detalle_pedido' ped.pk %}">
+            Pedido #{{ ped.id }}
+          </a>
+          — {{ ped.fecha|date:"Y-m-d H:i" }}
+          — Estado: <strong>{{ ped.get_estado_display }}</strong>
+          <br>
+          <small>
+            Productos:
+            {% for prod in ped.productos.all %}
+              <a href="{% url 'tienda:detalle_producto' prod.pk %}">{{ prod.nombre }}</a>{% if not forloop.last %}, {% endif %}
+            {% empty %}
+              (sin productos)
+            {% endfor %}
+          </small>
+        </li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>Este cliente aún no tiene pedidos.</p>
+  {% endif %}
+
+  <p><a href="{% url 'tienda:lista_pedidos' %}">← Volver a la lista de pedidos</a></p>
+{% endblock %}

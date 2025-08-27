@@ -1,0 +1,31 @@
+{% load static %}
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block title %}Tienda Django{% endblock %}</title>
+
+  <!-- PicoCSS para estilos rápidos -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
+
+  <!-- Tu CSS propio -->
+  <link rel="stylesheet" href="{% static 'css/main.css' %}">
+</head>
+<body>
+  <!-- Navbar global -->
+  {% include "tienda/partials/navbar.html" %}
+
+  <!-- Contenido principal -->
+  <main class="container">
+    {% block content %}{% endblock %}
+  </main>
+
+  <!-- Footer opcional -->
+  <footer class="container">
+    <p style="text-align:center; margin-top:2rem; font-size:0.9em;">
+      Proyecto Tienda con <strong>Django</strong> · Clase {{ now|date:"Y" }}
+    </p>
+  </footer>
+</body>
+</html>
